@@ -11,22 +11,16 @@ with open(filename, "rb") as fid:
 
 #b64_bytes = base64.b64encode(data)
 b64_bytes = data
-
-#print(b64_bytes)
-
 b64_string = b64_bytes.decode()
 
-#print(b64_string)
+bytes_string = base64.b64decode(b64_string)
 
-print(base64.b64decode(b64_string))
+jpg_as_text = str(bytes_string)
 
-# reconstruct image as an numpy array
-img = imread(io.BytesIO(base64.b64decode(b64_string)))
-
-height, width, channels = img.shape
-print(height)
-print(width)
-print(channels)
-
-with open('/home/ubuntu/testImageBytes', 'wb') as file_to_save:
-    file_to_save.write(img)
+text_file = open("testImageBytes3", "w")
+ 
+#write string to file
+text_file.write(jpg_as_text)
+ 
+#close file
+text_file.close()
